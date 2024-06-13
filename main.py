@@ -85,7 +85,7 @@ TOTAL: ${expenses[1]}\n\n\
 {'\n'.join(incomes[0])}\n\n\
 TOTAL: ${incomes[1]}\n\n\
 \
-💰Your $ balance: {incomes[1] - incomes[1]}\
+💰Your $ balance: {incomes[1] - expenses[1]}\
 "
 
     bot.send_message(message.chat.id, expenses_feedback)
