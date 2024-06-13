@@ -73,19 +73,22 @@ def add(message):
 def balance(message):
     user_id = str(message.from_user.id)
 
-    expenses = f"\
+    expenses = get_expenses(user_id)
+    incomes = get_incomes(user_id)
+
+    expenses_feedback = f"\
 ACCOUNT INFO\n\n\
 ⬆️Expenses:\n\
-{'\n'.join(get_expenses(user_id)[0])}\n\n\
-TOTAL: ${get_expenses(user_id)[1]}\n\n\
+{'\n'.join(expenses[0])}\n\n\
+TOTAL: ${expenses[1]}\n\n\
 ⬇️Incomes:\n\
-{'\n'.join(get_incomes(user_id)[0])}\n\n\
-TOTAL: ${get_incomes(user_id)[1]}\n\n\
+{'\n'.join(incomes[0])}\n\n\
+TOTAL: ${incomes[1]}\n\n\
 \
-💰Your $ balance: {get_incomes(user_id)[1] - get_expenses(user_id)[1]}\
+💰Your $ balance: {incomes[1] - incomes[1]}\
 "
 
-    bot.send_message(message.chat.id, expenses)
+    bot.send_message(message.chat.id, expenses_feedback)
 
 # Callbacks
 @bot.callback_query_handler(func=lambda call: True)
@@ -138,8 +141,6 @@ def callback(call):
                 bot.send_message(call.message.chat.id, f"Added ${amount} to {category}")
             user_data[user_id]["state"] = {}
         sync()
-        print(user_data)
-        
 
     elif call.data == "cancel":
         bot.send_message(call.message.chat.id, "Operation cancelled.")
