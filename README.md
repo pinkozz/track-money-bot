@@ -10,7 +10,7 @@ A bot made to help you track your money flow. Add incomes and expenses to take f
 
 • [Contributing](https://github.com/pinkozz/track-money-bot#contributing)
 
-• [License](https://github.com/pinkozz/track-money-botN#license)
+• [License](https://github.com/pinkozz/track-money-bot#license)
 
 # Features
 • Database integration to track each user's money flow personally
